@@ -8,17 +8,34 @@
 
     <!-- Form -->
     <form class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-      <input type="text" placeholder="Country Code" [(ngModel)]="country_code" name="city"
+
+      <!-- Country Code -->
+      <select [(ngModel)]="country_code" name="country_code" (change) = "countryDetails()"
         class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
-      <input type="text" placeholder="City / Town" [(ngModel)]="city" name="city"
+        <option value="" disabled selected>Select Country</option>
+        <option *ngFor="let option of list_of_countries" [value]="option">{{ option }}</option>
+      </select>
+
+      <!-- City Dropdown -->
+      <select [(ngModel)]="city" name="city" (change) = "cityDetails()"
         class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
-      <input type="number" placeholder="Latitude" [(ngModel)]="latitude" name="latitude"
+        <option value="" disabled selected>Select City</option>
+        <option *ngFor="let option of list_of_cities" [value]="option">{{ option }}</option>
+      </select>
+
+
+      <!-- Latitude -->
+      <input type="number" placeholder="Latitude" [(ngModel)]="latitude" name="latitude" [disabled]="latitudeDisabled"
         class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
-      <input type="number" placeholder="Longitude" [(ngModel)]="longitude" name="longitude"
+
+      <!-- Longitude -->
+      <input type="number" placeholder="Longitude" [(ngModel)]="longitude" name="longitude" [disabled]="longitudeDisabled"
         class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
+
     </form>
 
-    <!-- Fetch Stations Button -->
+
+    <!-- Fetch Stations Button with Loader -->
     <div class="flex justify-center mb-6">
       <button (click)="onFetchStations()"
         class="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition">
