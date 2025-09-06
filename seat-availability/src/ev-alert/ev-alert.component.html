@@ -1,0 +1,62 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 p-6">
+  <div class="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-8">
+
+    <!-- Title -->
+    <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">
+      ⚡ EV Charging Stations Finder
+    </h2>
+
+    <!-- Form -->
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <input type="text" placeholder="Country Code" [(ngModel)]="country_code" name="city"
+        class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
+      <input type="text" placeholder="City / Town" [(ngModel)]="city" name="city"
+        class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
+      <input type="number" placeholder="Latitude" [(ngModel)]="latitude" name="latitude"
+        class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
+      <input type="number" placeholder="Longitude" [(ngModel)]="longitude" name="longitude"
+        class="p-3 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none shadow-sm">
+    </form>
+
+    <!-- Fetch Stations Button -->
+    <div class="flex justify-center mb-6">
+      <button (click)="onFetchStations()"
+        class="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition">
+        🔍 Find Stations
+      </button>
+    </div>
+
+    <!-- Results Table -->
+    <div *ngIf="stations.length > 0" class="overflow-x-auto">
+      <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+        <thead class="bg-gradient-to-r from-teal-600 to-blue-600 text-white">
+          <tr>
+            <th class="p-3 text-left">Station</th>
+            <th class="p-3 text-left">Address</th>
+            <th class="p-3 text-left">Distance (km)</th>
+            <th class="p-3 text-left">Power (kW)</th>
+            <th class="p-3 text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody class="bg-gray-50">
+          <tr *ngFor="let station of stations" class="border-b hover:bg-gray-100 transition">
+            <td class="p-3 font-medium">{{ station.stationName }}</td>
+            <td class="p-3">{{ station.address }}</td>
+            <td class="p-3">{{ station.distance }}</td>
+            <td class="p-3">{{ station.power }}</td>
+            <td class="p-3 text-blue-700 font-semibold">{{ station.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Alert Button -->
+    <div class="flex justify-center mt-6">
+      <button (click)="onSetAlert()"
+        class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition">
+        📢 Notify me when new stations are added
+      </button>
+    </div>
+
+  </div>
+</div>
