@@ -1,24 +1,31 @@
-import { Injectable,inject } from '@angular/core';
+import { Injectable,inject,OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService implements OnInit{
 
   private http = inject(HttpClient);
   api_key = "f7a930dc-c0e3-458a-a530-c86af1b00519";
-  max_results = 100;
+  max_results = 10;
   output = "json";
   compact = "true";
   verbose = "false";
   baseUrl = "https://api.openchargemap.io/v3/poi";
   url:string[] = [];
+  final_url:string = "";
+
+  ngOnInit(): void {
+
+  }
 
   fetchSeatAvailabilty(country_code:string,latitude:number,longitude:number) : Observable<any>{
-    let final_url = this.buildUrl(country_code,latitude,longitude);
-    return this.http.get<any>(final_url);   //add an interface
+    this.final_url = "";
+    this.url = [];
+    this.final_url = this.buildUrl(country_code,latitude,longitude);
+    return this.http.get<any>(this.final_url);   //add an interface
   }
 
   buildUrl(country_code:string,latitude:number,longitude:number){

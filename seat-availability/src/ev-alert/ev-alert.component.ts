@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor ,NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import demographics from '../../configs/cities.json';
@@ -17,7 +17,7 @@ interface CityData {
 @Component({
   selector: 'app-ev-alert',
   standalone: true,
-  imports: [NgIf, NgFor, FormsModule],
+  imports: [NgIf, NgFor, NgClass, FormsModule],
   templateUrl: './ev-alert.component.html',
   styleUrls: ['./ev-alert.component.scss']
 })
@@ -35,6 +35,9 @@ export class EvAlertComponent implements OnInit{
   stations: any[] = [];
   latitudeDisabled = true;
   longitudeDisabled = true;
+  loaderDisabled = true;
+  isDarkMode = true;
+  currentPage = 0;
 
   ngOnInit(): void {
     demographics.forEach((metro_city: CityData)=>{
@@ -71,7 +74,17 @@ export class EvAlertComponent implements OnInit{
     }
   }
 
+  onPrevPage(){
+
+  }
+
+  onNextPage(){
+    
+  }
+
   onFetchStations() {
+    this.loaderDisabled = false;
+    this.stations = [];
     this.apiService.fetchSeatAvailabilty(this.c_code,this.latitude,this.longitude).subscribe((stationData =>{
       try {
         console.log(stationData);
@@ -85,6 +98,7 @@ export class EvAlertComponent implements OnInit{
             "status" : element['StatusTypeID'] &&  element['StatusTypeID'] == 50 ? "Operational" : "In Progress" 
           }
           this.stations.push(stationInfo);
+          this.loaderDisabled = true;
         });
       } catch (error) {
         console.log(error);

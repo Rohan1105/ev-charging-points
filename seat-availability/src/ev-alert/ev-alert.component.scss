@@ -1,0 +1,22 @@
+:host {
+  /* Neon hover glow for inputs, buttons, rows */
+  .hover\:shadow-ev-glow:hover {
+    box-shadow: 0 0 12px #00ffe0, 0 0 24px #00ffe0;
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.3; }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 8s infinite;
+  }
+}

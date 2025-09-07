@@ -1,3 +1,119 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Neon Title */
+.neon-title {
+  text-shadow:
+    0 0 5px #00ffea,
+    0 0 10px #00ffea,
+    0 0 20px #00ffea,
+    0 0 40px #00ffea;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+/* Floating Emoji Neon */
+.neon-title span {
+  display: inline-block;
+  animation: emojiGlow 1.5s infinite alternate;
+}
+
+@keyframes neonPulse {
+  0% { text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 40px #00ffea; }
+  50% { text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 60px #39ff14; }
+  100% { text-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 40px #00ffea; }
+}
+
+@keyframes emojiGlow {
+  0% { text-shadow: 0 0 5px #fff200, 0 0 10px #fff200; }
+  50% { text-shadow: 0 0 15px #ff0, 0 0 30px #ff0; }
+  100% { text-shadow: 0 0 5px #fff200, 0 0 10px #fff200; }
+}
+
+/* Neon Glow for Buttons */
+.shadow-neon {
+  box-shadow:
+    0 0 5px #00ffea,
+    0 0 10px #00ffea,
+    0 0 20px #00ffea,
+    0 0 40px #00ffea;
+}
+
+.animate-pulse-green {
+  animation: neonPulseButton 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulseButton {
+  0% { box-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 40px #00ffea; }
+  50% { box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 60px #39ff14; }
+  100% { box-shadow: 0 0 5px #00ffea, 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 40px #00ffea; }
+}
+
+/* Input Focus Glow */
+input:focus, select:focus {
+  box-shadow: 0 0 8px #00ffea, 0 0 16px #00ffea;
+  border-color: #00ffea;
+}
+
+/* Pagination Neon Hover */
+nav button:hover {
+  box-shadow: 0 0 8px #00ffea, 0 0 16px #00ffea, 0 0 32px #00ffea;
+}
+
+/* Table Row Hover Glow */
+.hover\:shadow-ev-glow:hover {
+  box-shadow: 0 0 10px #00ffea inset, 0 0 20px #00ffea;
+}
+
+/* Table Row Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Floating Bolt Animation */
+@keyframes floatBolt {
+  0% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-20px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 0.4; }
+}
+
+.animate-floatBolt {
+  animation: floatBolt 3s ease-in-out infinite;
+}
+
+.animate-floatBolt.delay-2000 { animation-delay: 2s; }
+.animate-floatBolt.delay-4000 { animation-delay: 4s; }
+
+/* EV Car Move Animation */
+@keyframes moveEV {
+  0% { left: -5%; }
+  100% { left: 105%; }
+}
+
+.animate-moveEV {
+  animation: moveEV 15s linear infinite;
+}
+
+.animate-moveEV.delay-3000 { animation-delay: 3s; }
+
+/* Pulse Background Overlay */
+@keyframes pulseSlow {
+  0% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.15; }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4s ease-in-out infinite;
+}
